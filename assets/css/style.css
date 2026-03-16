@@ -2154,3 +2154,63 @@ textarea.form-input::-webkit-resizer {
   }
 
 }
+/*-----------------------------------*\
+  #PROJECT DETAILS (ADDITION)
+\*-----------------------------------*/
+
+.project-details {
+  margin: 15px 10px 10px;
+  /* Aligns with the project title margin */
+  padding-top: 10px;
+  border-top: 1px solid var(--jet);
+  /* subtle separator */
+}
+
+.tech-stack {
+  color: var(--orange-yellow-crayola);
+  font-size: var(--fs-8);
+  /* Smaller size for tech tags */
+  font-weight: var(--fw-500);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.details-list li {
+  color: var(--light-gray);
+  font-size: var(--fs-7);
+  /* matches your contact info size */
+  line-height: 1.4;
+  position: relative;
+  padding-left: 15px;
+}
+
+/* Custom bullet point using your theme colors */
+.details-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--orange-yellow-crayola);
+  font-weight: var(--fw-600);
+}
+
+/* OPTIONAL: If you want details to appear only on hover (cleaner look) */
+
+.project-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: var(--transition-2);
+  opacity: 0;
+}
+
+.project-item:hover .project-details {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 15px;
+}
