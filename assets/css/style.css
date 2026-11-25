@@ -2158,18 +2158,24 @@ textarea.form-input::-webkit-resizer {
   #PROJECT DETAILS (ADDITION)
 \*-----------------------------------*/
 
+
+/*-----------------------------------*\
+  #PROJECT DETAILS
+\*-----------------------------------*/
+
 .project-details {
   margin: 15px 10px 10px;
-  /* Aligns with the project title margin */
   padding-top: 10px;
   border-top: 1px solid var(--jet);
-  /* subtle separator */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+  opacity: 0;
 }
 
 .tech-stack {
   color: var(--orange-yellow-crayola);
   font-size: var(--fs-8);
-  /* Smaller size for tech tags */
   font-weight: var(--fw-500);
   margin-bottom: 8px;
   text-transform: uppercase;
@@ -2185,13 +2191,11 @@ textarea.form-input::-webkit-resizer {
 .details-list li {
   color: var(--light-gray);
   font-size: var(--fs-7);
-  /* matches your contact info size */
-  line-height: 1.4;
+  line-height: 1.5;
   position: relative;
   padding-left: 15px;
 }
 
-/* Custom bullet point using your theme colors */
 .details-list li::before {
   content: "•";
   position: absolute;
@@ -2200,17 +2204,11 @@ textarea.form-input::-webkit-resizer {
   font-weight: var(--fw-600);
 }
 
-/* OPTIONAL: If you want details to appear only on hover (cleaner look) */
-
-.project-details {
-  max-height: 0;
-  overflow: hidden;
-  transition: var(--transition-2);
-  opacity: 0;
-}
-
-.project-item:hover .project-details {
-  max-height: 500px;
+/* Show complete project details on hover */
+.project-item:hover .project-details,
+.project-item:focus-within .project-details {
+  max-height: 2000px;
   opacity: 1;
   margin-top: 15px;
 }
+
