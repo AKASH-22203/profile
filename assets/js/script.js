@@ -55,13 +55,75 @@ overlay.addEventListener("click", testimonialsModalFunc);
 
 
 
-// custom select variables
+
+// Custom select variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
-select.addEventListener("click", function () { elementToggleFunc(this); });
+// Filter variables
+const filterItems = document.querySelectorAll("[data-filter-item]");
+
+// Filter functionality
+const filterFunc = function (selectedValue) {
+  filterItems.forEach((item) => {
+    const category = item.dataset.category;
+
+    if (selectedValue === "all" || selectedValue === category) {
+      item.classList.add("active");
+    } else {
+      item.classList.remove("active");
+    }
+  });
+};
+
+// Mobile select dropdown
+if (select) {
+  select.addEventListener("click", function () {
+    elementToggleFunc(this);
+  });
+}
+
+// Mobile filter options
+selectItems.forEach((item) => {
+  item.addEventListener("click", function () {
+    const selectedValue = this.innerText.trim().toLowerCase();
+
+    if (selectValue) {
+      selectValue.innerText = this.innerText;
+    }
+
+    if (select) {
+      elementToggleFunc(select);
+    }
+
+    filterFunc(selectedValue);
+
+    filterBtn.forEach((button) => {
+      button.classList.toggle(
+        "active",
+        button.innerText.trim().toLowerCase() === selectedValue
+      );
+    });
+  });
+});
+
+// Desktop filter buttons
+filterBtn.forEach((button) => {
+  button.addEventListener("click", function () {
+    const selectedValue = this.innerText.trim().toLowerCase();
+
+    if (selectValue) {
+      selectValue.innerText = this.innerText;
+    }
+
+    filterFunc(selectedValue);
+
+    filterBtn.forEach((btn) => btn.classList.remove("active"));
+    this.classList.add("active");
+  });
+});
 
 // add event in all select items
 for (let i = 0; i < selectItems.length; i++) {
